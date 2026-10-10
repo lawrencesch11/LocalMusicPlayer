@@ -1,7 +1,7 @@
 import pygame
 pygame.init()
 pygame.mixer.init()
-songs={"Lover Without A Heart": "CG5 - Lover Without A Heart (SPOTISAVER).mp3", "Artificial Suicide": "ARTIFICIAL SUICIDE.mp3"}
+songs={"Lover Without A Heart": "CG5 - Lover Without A Heart (SPOTISAVER).mp3", "Artificial Suicide": "ARTIFICIAL SUICIDE.mp3", "Pain": "Pain_spotdown.app.mp3"}
 TitleFont=pygame.font.Font(None, 40)
 InfoFont=pygame.font.Font(None, 15)
 screen=pygame.display.set_mode((600, 600))
@@ -48,5 +48,10 @@ while running:
     for num, song in enumerate(songs):
         pygame.draw.rect(screen, (230, 230, 230), pygame.Rect(20, 20+num*150, 300, 120))
         screen.blit(TitleFont.render(song, True, (0, 0, 0)), (30, 30+num*150))
+        if song==targetsong:
+            if status=="Paused":
+                pygame.draw.circle(screen, (200, 200, 200), [290, 110+num*150], 20)
+            if status=="Playing":
+                pygame.draw.rect(screen, (200, 200, 200), pygame.Rect(270, 90+num*150, 40, 40))
     screen.blit(InfoFont.render(f"The current song is:{targetsong}", True, (0, 0, 0)), (320, 20))
     pygame.display.flip()
